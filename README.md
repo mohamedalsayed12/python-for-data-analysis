@@ -27,6 +27,58 @@ The result is an early screening tool, not a claim that Netflix should buy a par
 
 The notebook demonstrates CSV imports with `usecols`, `dtype` and `parse_dates`; data inspection with `info`, `describe`, null counts and duplicate checks; deliberate missing-value handling; string cleaning; numeric conversion; named `groupby` aggregations; left joins; boolean filtering; ranking; `melt` and `pivot`; date-based comparisons; and publication-ready Matplotlib charts.
 
+## How I used pandas
+
+I used pandas for the full data-cleaning and analysis process rather than only using it to open the files.
+
+### Importing and inspecting the data
+
+- Loaded three CSV files with `pd.read_csv()`.
+- Used `usecols` so the notebook imports only the fields needed for the analysis.
+- Set text columns with `dtype` and converted date columns while importing with `parse_dates`.
+- Used `.shape`, `.info()` and `.describe()` to understand the size, structure and content of each dataset.
+- Checked missing values with `.isnull().sum()` and duplicate records with `.duplicated().sum()`.
+
+### Cleaning the data
+
+- Removed records only when an essential title or date was missing.
+- Removed exact duplicate rows with `.drop_duplicates()`.
+- Converted ratings, votes, viewing hours and views into numeric fields with `pd.to_numeric(errors="coerce")`.
+- Removed commas from IMDb vote counts before converting them from text.
+- Cleaned title text with `.str.strip()`, `.str.lower()` and regular expressions so titles could be matched across different files.
+- Preserved unavailable commercial information as `NaN` rather than replacing unknown values with zero.
+
+### Transforming and combining the data
+
+- Used `.groupby().agg()` with named aggregations to calculate total viewing hours, total views, best rank and weeks in the Top 10.
+- Combined different seasons belonging to the same programme before calculating show-level results.
+- Created a complete 52-week calendar with `pd.date_range()` and `MultiIndex.from_product()` so weeks without a Top 10 appearance were counted consistently.
+- Used left `.merge()` operations to add IMDb and catalogue information without dropping shows that failed to match.
+- Used boolean masks to filter titles with current viewing activity.
+- Used `.rank(pct=True)` to put different demand measures onto comparable percentile scales.
+- Used `np.select()` and `np.where()` to create reliability, demand-pattern and recommendation labels.
+- Used `.melt()` and `.pivot()` to reshape the Low, Base and High viewer scenarios for visualization.
+- Exported the final decision table and research templates with `.to_csv()`.
+
+## How I used Matplotlib
+
+I used Matplotlib as the presentation layer for the analysis. Each chart was selected because it supports a specific business decision.
+
+- Applied one consistent colour palette and shared formatting through `plt.rcParams`.
+- Used `plt.subplots()` so each figure and axis could be formatted directly.
+- Created horizontal bar charts with `ax.barh()` because programme titles are easier to read horizontally.
+- Added value labels with `ax.bar_label()` so the reader does not have to estimate results from the axis.
+- Formatted large audience numbers with `matplotlib.ticker` and comma separators.
+- Added titles and axis labels that explain what each measure represents and where it should be used cautiously.
+- Used grouped bars to compare Low, Base and High viewer scenarios for the same title.
+- Saved every figure with `dpi=300` and `bbox_inches="tight"` so the images remain clear in the GitHub README and portfolio documents.
+
+The three visuals have separate purposes:
+
+1. **Proven demand chart:** identifies which shows should enter commercial research first.
+2. **Recent viewing chart:** identifies current viewing leaders while warning that they still need reliability checks.
+3. **Viewer scenario chart:** compares the effect of cautious, central and optimistic assumptions without presenting estimates as observed audiences.
+
 ## Business questions and how I answered them
 
 ### 1. Which shows have the strongest proven demand?

@@ -18,3 +18,8 @@ Before reusing the raw data outside this portfolio, confirm the original source 
 - the catalogue is historical and cannot prove current platform or rights status;
 - IMDb title matching is based on cleaned titles and can require manual checking for remakes;
 - no file contains licence cost, confirmed rights, Google Trends or original UK audience data.
+
+## Notes added in version 2
+
+- `imdb_ratings.csv` mixes series, individual episodes **and films**. It also looks like a snapshot from about 2022, because almost no series in it start after 2022. The notebook removes films and episodes before matching.
+- `title_match_overrides.csv` is analyst-maintained. It records reviewed accept/reject decisions for IMDb matches that the matching rule flags (for example, remakes that share a title with an older show). Each row has a reason.

@@ -1,9 +1,10 @@
 missing_information,preferred_source,reason_needed
+Content ownership (original vs licensed),Netflix press site / distributor records,Decides whether the next step is renewal or licence acquisition
+Current IMDb ratings (snapshot ends ~2022),IMDb non-commercial datasets (title.ratings),Shows launched after 2022 have no audience-quality evidence
 Original UK audience,BARB or broadcaster reports,Confirms previous-season UK demand
-Google Trends history,Downloaded Google Trends data,Measures current UK search interest
-Netflix UK title audience,Internal Netflix analytics,Calibrates the viewer estimates
-Licence cost,Distributor quotation,Required for ROI and break-even
-Rights availability,Distributor or legal team,Determines whether the title is obtainable
-Current platform,Current rights research,Identifies exclusivity conflicts
-Production status,Studio or reliable trade source,Shows whether more episodes are realistic
-Confirmed release date,Studio or broadcaster,Supports launch timing
+Google Trends history,Google Trends export (UK),Measures current UK search interest
+Netflix UK title audience,Internal Netflix analytics,Calibrates any viewer estimate
+Licence cost,Distributor quotation,Required for the value gate
+Rights availability,Distributor or legal team,Determines whether the show is obtainable
+Current platform,Rights research,Identifies exclusivity conflicts
+Production status,Studio or trade press,Shows whether more episodes are realistic
